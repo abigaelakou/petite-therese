@@ -17,7 +17,7 @@
                         <div class="col-md-12 col-lg-7">
                             <div class="hero-content">
                                 <h6 class="hero-sub-title" data-animation="fadeInDown" data-delay=".25s">
-                                    <i class="far fa-book-open-reader"></i> Bienvenue à La Petite Thérèse !
+                                    <i class="fas fa-book-open-reader"></i> Bienvenue à La Petite Thérèse !
                                 </h6>
                                 <h1 class="hero-title" data-animation="fadeInRight" data-delay=".50s">
                                     Un avenir brillant commence <span>ici</span>
@@ -46,7 +46,7 @@
                         <div class="col-md-12 col-lg-7">
                             <div class="hero-content">
                                 <h6 class="hero-sub-title" data-animation="fadeInDown" data-delay=".25s">
-                                    <i class="far fa-book-open-reader"></i> Excellence & Bienveillance
+                                    <i class="fas fa-book-open-reader"></i> Excellence & Bienveillance
                                 </h6>
                                 <h1 class="hero-title" data-animation="fadeInRight" data-delay=".50s">
                                     Des enseignants <span>passionnés</span> pour vos enfants
@@ -75,7 +75,7 @@
                         <div class="col-md-12 col-lg-7">
                             <div class="hero-content">
                                 <h6 class="hero-sub-title" data-animation="fadeInDown" data-delay=".25s">
-                                    <i class="far fa-book-open-reader"></i> Inscriptions ouvertes
+                                    <i class="fas fa-book-open-reader"></i> Inscriptions ouvertes
                                 </h6>
                                 <h1 class="hero-title" data-animation="fadeInRight" data-delay=".50s">
                                     Rejoignez la famille <span>La Petite Thérèse</span>
@@ -181,7 +181,6 @@
                                         <div class="about-experience-icon">
                                             <img src="{{ asset('assets/img/icon/exchange-idea.svg') }}" alt="">
                                         </div>
-                                        {{-- Remplacer par le vrai nombre d'années --}}
                                         <b class="text-start">+ de 20 ans <br> d'excellence</b>
                                     </div>
                                 </div>
@@ -197,14 +196,14 @@
                     <div class="about-right wow fadeInRight" data-wow-delay=".25s">
                         <div class="site-heading mb-3">
                             <span class="site-title-tagline">
-                                <i class="far fa-book-open-reader"></i> À propos de nous
+                                <i class="fas fa-book-open-reader"></i> À propos de nous
                             </span>
                             <h2 class="site-title">
                                 Notre système éducatif <span>vous inspire</span> davantage.
                             </h2>
                         </div>
                         <p class="about-text">
-                            Fondé à Port-Bouet / Gonzague Ville, le Groupe Scolaire La Petite Thérèse
+                            Fondé à Port-Bouet / Gonzague Ville, le Groupe Scolaire Catholique La Petite Thérèse
                             s'est bâti une réputation d'excellence grâce à son engagement envers la qualité
                             de l'enseignement et le bien-être de chaque élève. De la Maternelle au CM2,
                             nous formons les citoyens de demain.
@@ -234,10 +233,9 @@
                                 <div class="col-md-5">
                                     <div class="about-quote">
                                         <p>
-                                            « Éduquer un enfant, c'est lui donner les clés pour ouvrir
-                                            toutes les portes de l'avenir. »
+                                            « Je veux passer mon ciel à faire du bien sur la terre. »
                                         </p>
-                                        <i class="far fa-quote-right"></i>
+                                        <i class="fas fa-quote-right"></i>
                                     </div>
                                 </div>
                             </div>
@@ -250,7 +248,6 @@
                                 <div class="icon"><i class="fas fa-headset"></i></div>
                                 <div class="number">
                                     <span>Appelez-nous</span>
-                                    {{-- Remplacer par le vrai numéro --}}
                                     <h6><a href="tel:+2250700000000">+225 07 00 00 00 00</a></h6>
                                 </div>
                             </div>
@@ -275,7 +272,6 @@
                             <img src="{{ asset('assets/img/icon/graduation.svg') }}" alt="">
                         </div>
                         <div>
-                            {{-- Remplacer data-to par le vrai effectif --}}
                             <span class="counter" data-count="+" data-to="450" data-speed="3000">450</span>
                             <h6 class="title">+ Élèves</h6>
                         </div>
@@ -287,7 +283,6 @@
                             <img src="{{ asset('assets/img/icon/teacher-2.svg') }}" alt="">
                         </div>
                         <div>
-                            {{-- Remplacer par le vrai nombre d'enseignants --}}
                             <span class="counter" data-count="+" data-to="30" data-speed="3000">30</span>
                             <h6 class="title">+ Enseignants</h6>
                         </div>
@@ -299,8 +294,7 @@
                             <img src="{{ asset('assets/img/icon/course.svg') }}" alt="">
                         </div>
                         <div>
-                            {{-- Remplacer par les vrais niveaux --}}
-                            <span class="counter" data-count="+" data-to="9" data-speed="3000">9</span>
+                            <span class="counter" data-count="+" data-to="6" data-speed="3000">6</span>
                             <h6 class="title">Niveaux scolaires</h6>
                         </div>
                     </div>
@@ -311,7 +305,6 @@
                             <img src="{{ asset('assets/img/icon/award.svg') }}" alt="">
                         </div>
                         <div>
-                            {{-- Remplacer par les vraies années d'existence --}}
                             <span class="counter" data-count="+" data-to="20" data-speed="3000">20</span>
                             <h6 class="title">Années d'existence</h6>
                         </div>
@@ -324,7 +317,7 @@
 
 
     {{-- ==============================
-         NIVEAUX SCOLAIRES (remplace Courses)
+         NIVEAUX SCOLAIRES
     ============================== --}}
     <div class="course-area py-120">
         <div class="container">
@@ -332,26 +325,28 @@
                 <div class="col-lg-6 mx-auto">
                     <div class="site-heading text-center">
                         <span class="site-title-tagline">
-                            <i class="far fa-book-open-reader"></i> Nos niveaux
+                            <i class="fas fa-book-open-reader"></i> Nos niveaux
                         </span>
                         <h2 class="site-title">Découvrez nos <span>niveaux scolaires</span></h2>
                         <p>Du préscolaire au CM2, nous proposons un parcours éducatif complet et cohérent pour accompagner votre enfant à chaque étape de sa croissance.</p>
                     </div>
                 </div>
             </div>
-            <div class="row">
+
+            {{-- CORRECTION : justify-content-center + align-items-stretch pour hauteur égale --}}
+            <div class="row justify-content-center align-items-stretch g-4">
 
                 {{-- Maternelle --}}
                 <div class="col-md-6 col-lg-5">
-                    <div class="course-item wow fadeInUp" data-wow-delay=".25s">
+                    <div class="course-item wow fadeInUp h-100" data-wow-delay=".25s">
                         <div class="course-img">
-                            <span class="course-tag"><i class="far fa-bookmark"></i> Préscolaire</span>
+                            <span class="course-tag"><i class="fas fa-bookmark"></i> Préscolaire</span>
                             <img src="{{ asset('assets/img/course/01.jpg') }}" alt="Maternelle">
-                            <a href="{{ route('niveaux') }}#maternelle" class="btn"><i class="far fa-link"></i></a>
+                            <a href="{{ route('niveaux') }}#maternelle" class="btn"><i class="fas fa-link"></i></a>
                         </div>
                         <div class="course-content">
                             <div class="course-meta">
-                                <span class="course-meta-left"><i class="far fa-users"></i> 3 – 5 ans</span>
+                                <span class="course-meta-left"><i class="fas fa-users"></i> 3 – 5 ans</span>
                             </div>
                             <h4 class="course-title">
                                 <a href="{{ route('niveaux') }}#maternelle">Maternelle</a>
@@ -362,7 +357,7 @@
                             </p>
                             <div class="course-bottom">
                                 <div class="course-bottom-left">
-                                    <span><i class="far fa-clock"></i> 3 niveaux</span>
+                                    <span><i class="fas fa-clock"></i> 3 niveaux</span>
                                 </div>
                                 <a href="{{ route('admissions') }}" class="course-price" style="font-size:13px">S'inscrire</a>
                             </div>
@@ -372,15 +367,15 @@
 
                 {{-- Primaire --}}
                 <div class="col-md-6 col-lg-5">
-                    <div class="course-item wow fadeInUp" data-wow-delay=".50s">
+                    <div class="course-item wow fadeInUp h-100" data-wow-delay=".50s">
                         <div class="course-img">
-                            <span class="course-tag"><i class="far fa-bookmark"></i> Primaire</span>
+                            <span class="course-tag"><i class="fas fa-bookmark"></i> Primaire</span>
                             <img src="{{ asset('assets/img/course/02.jpg') }}" alt="Primaire">
-                            <a href="{{ route('niveaux') }}#primaire" class="btn"><i class="far fa-link"></i></a>
+                            <a href="{{ route('niveaux') }}#primaire" class="btn"><i class="fas fa-link"></i></a>
                         </div>
                         <div class="course-content">
                             <div class="course-meta">
-                                <span class="course-meta-left"><i class="far fa-users"></i> 6 – 11 ans</span>
+                                <span class="course-meta-left"><i class="fas fa-users"></i> 6 – 11 ans</span>
                             </div>
                             <h4 class="course-title">
                                 <a href="{{ route('niveaux') }}#primaire">École Primaire</a>
@@ -391,7 +386,7 @@
                             </p>
                             <div class="course-bottom">
                                 <div class="course-bottom-left">
-                                    <span><i class="far fa-clock"></i> 6 niveaux</span>
+                                    <span><i class="fas fa-clock"></i> 6 niveaux</span>
                                 </div>
                                 <a href="{{ route('admissions') }}" class="course-price" style="font-size:13px">S'inscrire</a>
                             </div>
@@ -408,13 +403,13 @@
     {{-- ==============================
          ENSEIGNANTS (aperçu)
     ============================== --}}
-    <div class="team-area py-120">
+    <!-- <div class="team-area py-120">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 mx-auto">
                     <div class="site-heading text-center">
                         <span class="site-title-tagline">
-                            <i class="far fa-book-open-reader"></i> Nos enseignants
+                            <i class="fas fa-book-open-reader"></i> Nos enseignants
                         </span>
                         <h2 class="site-title">Rencontrez notre <span>équipe pédagogique</span></h2>
                         <p>Des professionnels passionnés et dévoués à l'épanouissement de vos enfants.</p>
@@ -423,94 +418,89 @@
             </div>
             <div class="row">
 
-                {{-- Enseignant 1 — remplacer par les vrais profils --}}
                 <div class="col-md-6 col-lg-3">
                     <div class="team-item wow fadeInUp" data-wow-delay=".25s">
                         <div class="team-img">
-                            <img src="{{ asset('assets/img/team/01.PNG') }}" alt="Enseignant">
+                            <img src="{{ asset('assets/img/team/01.PNG') }}" alt="Père Luc SENOU">
                         </div>
                         <div class="team-social">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-whatsapp"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                         <div class="team-content">
                             <div class="team-bio">
-                                {{-- Remplacer par le vrai nom --}}
-                                <h5><a href="{{ route('enseignants') }}">Père Luc SENOU.</a></h5>
-                                <span>Directrice Général</span>
+                                <h5><a href="{{ route('enseignants') }}">Père Luc SENOU</a></h5>
+                                <span>Directeur Général</span>
                             </div>
                         </div>
-                        <span class="team-social-btn"><i class="far fa-share-nodes"></i></span>
+                        <span class="team-social-btn"><i class="fas fa-share-nodes"></i></span>
                     </div>
                 </div>
 
-                {{-- Enseignant 2 --}}
                 <div class="col-md-6 col-lg-3">
                     <div class="team-item wow fadeInUp" data-wow-delay=".50s">
                         <div class="team-img">
-                            <img src="{{ asset('assets/img/team/01.PNG') }}" alt="Enseignant">
+                            <img src="{{ asset('assets/img/team/01.PNG') }}" alt="M. Jerome KRAGBE">
                         </div>
                         <div class="team-social">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-whatsapp"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                         <div class="team-content">
                             <div class="team-bio">
                                 <h5><a href="{{ route('enseignants') }}">M. Jerome KRAGBE</a></h5>
-                                <span>Directeur des — Etudes </span>
+                                <span>Directeur des Études</span>
                             </div>
                         </div>
-                        <span class="team-social-btn"><i class="far fa-share-nodes"></i></span>
+                        <span class="team-social-btn"><i class="fas fa-share-nodes"></i></span>
                     </div>
                 </div>
 
-                {{-- Enseignant 3 --}}
                 <div class="col-md-6 col-lg-3">
                     <div class="team-item wow fadeInUp" data-wow-delay=".75s">
                         <div class="team-img">
-                            <img src="{{ asset('assets/img/team/01.PNG') }}" alt="Enseignant">
+                            <img src="{{ asset('assets/img/team/01.PNG') }}" alt="M. BRUCE">
                         </div>
                         <div class="team-social">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-whatsapp"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                         <div class="team-content">
                             <div class="team-bio">
-                                <h5><a href="{{ route('enseignants') }}">M BRUCE.</a></h5>
-                                <span>Enseignant — CM2 </span>
+                                <h5><a href="{{ route('enseignants') }}">M. BRUCE</a></h5>
+                                <span>Enseignant — CM2</span>
                             </div>
                         </div>
-                        <span class="team-social-btn"><i class="far fa-share-nodes"></i></span>
+                        <span class="team-social-btn"><i class="fas fa-share-nodes"></i></span>
                     </div>
                 </div>
 
-                {{-- Enseignant 4 --}}
                 <div class="col-md-6 col-lg-3">
                     <div class="team-item wow fadeInUp" data-wow-delay="1s">
                         <div class="team-img">
-                            <img src="{{ asset('assets/img/team/01.PNG') }}" alt="Enseignant">
+                            <img src="{{ asset('assets/img/team/01.PNG') }}" alt="M. Richard">
                         </div>
                         <div class="team-social">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-whatsapp"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                         <div class="team-content">
                             <div class="team-bio">
-                                <h5><a href="{{ route('enseignants') }}">M. Richard </a></h5>
+                                <h5><a href="{{ route('enseignants') }}">M. Richard</a></h5>
                                 <span>Enseignant — CM1</span>
                             </div>
                         </div>
-                        <span class="team-social-btn"><i class="far fa-share-nodes"></i></span>
+                        <span class="team-social-btn"><i class="fas fa-share-nodes"></i></span>
                     </div>
                 </div>
 
             </div>
         </div>
-    </div>
+    </div> -->
     {{-- Team Area End --}}
 
 
@@ -525,7 +515,7 @@
                         <div class="choose-content-info">
                             <div class="site-heading mb-0">
                                 <span class="site-title-tagline">
-                                    <i class="far fa-book-open-reader"></i> Pourquoi nous choisir
+                                    <i class="fas fa-book-open-reader"></i> Pourquoi nous choisir
                                 </span>
                                 <h2 class="site-title text-white mb-10">
                                     Nous sommes <span>experts</span> et donnons le meilleur pour votre enfant
@@ -607,7 +597,7 @@
                 <div class="col-lg-6 mx-auto">
                     <div class="site-heading text-center">
                         <span class="site-title-tagline">
-                            <i class="far fa-book-open-reader"></i> Galerie
+                            <i class="fas fa-book-open-reader"></i> Galerie
                         </span>
                         <h2 class="site-title">Notre <span>galerie photos</span></h2>
                         <p>Quelques instants de vie de notre école : fêtes scolaires, activités sportives, remises de prix et journées pédagogiques.</p>
@@ -700,7 +690,7 @@
                             <p>
                                 Les places sont limitées. Contactez-nous ou remplissez le formulaire
                                 d'inscription en ligne pour garantir la place de votre enfant
-                                au Groupe Scolaire La Petite Thérèse.
+                                au Groupe Scolaire Catholique La Petite Thérèse.
                             </p>
                             <div class="cta-btn">
                                 <a href="{{ route('admissions') }}" class="theme-btn">
@@ -725,7 +715,7 @@
                 <div class="col-lg-6 mx-auto">
                     <div class="site-heading text-center">
                         <span class="site-title-tagline">
-                            <i class="far fa-book-open-reader"></i> Témoignages
+                            <i class="fas fa-book-open-reader"></i> Témoignages
                         </span>
                         <h2 class="site-title text-white">Ce que disent <span>nos parents</span></h2>
                         <p class="text-white">
@@ -742,7 +732,6 @@
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
                     <div class="testimonial-quote">
-                        {{-- Remplacer par de vrais témoignages --}}
                         <p>Depuis que ma fille est inscrite à La Petite Thérèse, j'observe une vraie progression. Les enseignants sont attentifs et les résultats sont là.</p>
                     </div>
                     <div class="testimonial-content">
@@ -754,7 +743,7 @@
                             <p>Parent d'élève — CM1</p>
                         </div>
                     </div>
-                    <span class="testimonial-quote-icon"><i class="far fa-quote-right"></i></span>
+                    <span class="testimonial-quote-icon"><i class="fas fa-quote-right"></i></span>
                 </div>
 
                 <div class="testimonial-item">
@@ -774,7 +763,7 @@
                             <p>Parent d'élève — CM2</p>
                         </div>
                     </div>
-                    <span class="testimonial-quote-icon"><i class="far fa-quote-right"></i></span>
+                    <span class="testimonial-quote-icon"><i class="fas fa-quote-right"></i></span>
                 </div>
 
                 <div class="testimonial-item">
@@ -794,7 +783,7 @@
                             <p>Parent d'élève — Maternelle</p>
                         </div>
                     </div>
-                    <span class="testimonial-quote-icon"><i class="far fa-quote-right"></i></span>
+                    <span class="testimonial-quote-icon"><i class="fas fa-quote-right"></i></span>
                 </div>
 
             </div>
@@ -805,7 +794,6 @@
 
     {{-- ==============================
          FORMULAIRE D'INSCRIPTION RAPIDE
-         (remplace la section Enroll)
     ============================== --}}
     <div class="enroll-area pt-80 pb-80">
         <div class="container">
@@ -818,10 +806,17 @@
                                     <h3>Demande d'inscription</h3>
                                     <p>Remplissez ce formulaire et nous vous recontacterons rapidement.</p>
                                 </div>
-                                <form action="{{ route('contact') }}" method="POST">
+
+                                @if(session('success'))
+                                    <div class="alert alert-success mb-3">{{ session('success') }}</div>
+                                @endif
+
+                                {{-- CORRECTION : route contact.store + form_type --}}
+                                <form action="{{ route('contact.store') }}" method="POST">
                                     @csrf
+                                    <input type="hidden" name="form_type" value="inscription">
                                     <div class="form-group">
-                                        <input type="text" name="nom" class="form-control"
+                                        <input type="text" name="nom_eleve" class="form-control"
                                             placeholder="Nom de l'élève" required>
                                     </div>
                                     <div class="form-group">
@@ -831,13 +826,14 @@
                                     <div class="form-group">
                                         <select class="form-select" name="niveau" required>
                                             <option value="">Choisir un niveau</option>
-                                            <option value="maternelle">Maternelle (PS – MS – GS)</option>
+                                            <option value="ps">Petite Section (PS)</option>
+                                            <option value="ms">Moyenne Section (MS)</option>
+                                            <option value="gs">Grande Section (GS)</option>
                                             <option value="cp">CP</option>
                                             <option value="ce1">CE1</option>
                                             <option value="ce2">CE2</option>
                                             <option value="cm1">CM1</option>
                                             <option value="cm2">CM2</option>
-                                            
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -856,7 +852,7 @@
                             <div class="skill-content">
                                 <div class="site-heading mb-3">
                                     <span class="site-title-tagline">
-                                        <i class="far fa-book-open-reader"></i> Nos résultats
+                                        <i class="fas fa-book-open-reader"></i> Nos résultats
                                     </span>
                                     <h2 class="site-title text-white">
                                         Excellence et <span>réussite</span> au rendez-vous
@@ -868,10 +864,9 @@
                                     témoigne de la qualité de notre encadrement.
                                 </p>
                                 <div class="skills-section">
-                                    {{-- Remplacer les % par les vrais taux --}}
                                     <div class="progress-box">
                                         <h5>Taux de réussite CEPE <span class="pull-right">100%</span></h5>
-                                        <div class="progress" data-value="90">
+                                        <div class="progress" data-value="100">
                                             <div class="progress-bar" role="progressbar"></div>
                                         </div>
                                     </div>
