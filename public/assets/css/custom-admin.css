@@ -1,238 +1,542 @@
 /*
  * ============================================================
  *  GSCA LA PETITE THÉRÈSE — Panel Admin Filament
- *  Style chaleureux & professionnel
+ *  Or dominant · Bleu marine structurant · Bleu ciel accent
  * ============================================================
  */
 
-/* ---- Variables ---- */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap');
+
 :root {
-    --pt-bleu-marine : #1B2B6B;
     --pt-or          : #C9A84C;
-    --pt-bleu-ciel   : #2E9EC5;
+    --pt-or-dark     : #A8893A;
+    --pt-or-light    : #F5EDD5;
+    --pt-or-glow     : rgba(201,168,76,0.25);
+    --pt-bleu        : #1B2B6B;
+    --pt-bleu-dark   : #12205A;
     --pt-bleu-light  : #EEF1FA;
-    --pt-or-light    : #FDF8EC;
+    --pt-bleu-ciel   : #2E9EC5;
+    --pt-blanc       : #ffffff;
+    --pt-gris        : #F8F7F4;
 }
 
 /* ============================================================
-   SIDEBAR
+   PAGE DE CONNEXION — L'effet WOW
    ============================================================ */
 
-/* Fond sidebar bleu marine */
+/* Fond de la page login — dégradé or luxueux */
+.fi-simple-layout {
+    background:
+        radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(46,158,197,0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #0D1B4B 0%, #1B2B6B 40%, #12205A 100%) !important;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Particules dorées décoratives */
+.fi-simple-layout::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image:
+        radial-gradient(circle, rgba(201,168,76,0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: particles 20s linear infinite;
+    pointer-events: none;
+}
+
+.fi-simple-layout::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+@keyframes particles {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(40px, 40px); }
+}
+
+/* Card de connexion */
+.fi-simple-main {
+    background: rgba(255,255,255,0.97) !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(201,168,76,0.3) !important;
+    box-shadow:
+        0 0 0 1px rgba(201,168,76,0.1),
+        0 20px 60px rgba(0,0,0,0.4),
+        0 0 80px rgba(201,168,76,0.08) !important;
+    padding: 2.5rem !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Bande dorée en haut de la card */
+.fi-simple-main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--pt-bleu), var(--pt-or), var(--pt-bleu-ciel), var(--pt-or), var(--pt-bleu));
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Logo sur la page login */
+.fi-simple-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.fi-simple-header img {
+    max-height: 90px !important;
+    width: auto !important;
+    filter: drop-shadow(0 4px 12px rgba(201,168,76,0.3));
+}
+
+/* Nom de l'école sur login */
+.fi-brand-name {
+    color: var(--pt-bleu) !important;
+    font-weight: 900 !important;
+    font-size: 1.1rem !important;
+    letter-spacing: -0.02em;
+}
+
+/* Titre "Connexion" */
+.fi-simple-main h1,
+.fi-simple-main .fi-heading {
+    color: var(--pt-bleu) !important;
+    font-weight: 800 !important;
+    font-size: 1.5rem !important;
+    text-align: center;
+}
+
+/* Sous-titre */
+.fi-simple-main p {
+    color: #6b7280 !important;
+    text-align: center;
+}
+
+/* Labels des champs */
+.fi-fo-field-wrp-label label {
+    color: var(--pt-bleu) !important;
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+/* Champs de saisie */
+.fi-input {
+    border: 2px solid #e5e7eb !important;
+    border-radius: 10px !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.95rem !important;
+    transition: all 0.3s ease !important;
+    background: #fafafa !important;
+}
+
+.fi-input:focus {
+    border-color: var(--pt-or) !important;
+    box-shadow: 0 0 0 4px var(--pt-or-glow) !important;
+    background: #fff !important;
+    outline: none !important;
+}
+
+/* BOUTON SE CONNECTER — Le bouton WOW */
+.fi-simple-main .fi-btn-primary,
+.fi-btn[type="submit"] {
+    background: linear-gradient(135deg, var(--pt-or) 0%, #E8C26A 50%, var(--pt-or-dark) 100%) !important;
+    border: none !important;
+    border-radius: 12px !important;
+    color: var(--pt-bleu) !important;
+    font-weight: 800 !important;
+    font-size: 1rem !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+    padding: 0.85rem 2rem !important;
+    width: 100% !important;
+    box-shadow:
+        0 4px 15px rgba(201,168,76,0.4),
+        0 2px 4px rgba(0,0,0,0.1) !important;
+    transition: all 0.3s ease !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.fi-simple-main .fi-btn-primary::before,
+.fi-btn[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.fi-simple-main .fi-btn-primary:hover::before,
+.fi-btn[type="submit"]:hover::before {
+    left: 100%;
+}
+
+.fi-simple-main .fi-btn-primary:hover,
+.fi-btn[type="submit"]:hover {
+    transform: translateY(-2px) !important;
+    box-shadow:
+        0 8px 25px rgba(201,168,76,0.5),
+        0 4px 8px rgba(0,0,0,0.15) !important;
+}
+
+/* Checkbox "Se souvenir de moi" */
+.fi-checkbox-input:checked {
+    background-color: var(--pt-or) !important;
+    border-color: var(--pt-or) !important;
+}
+
+/* Lien mot de passe oublié */
+.fi-link {
+    color: var(--pt-or-dark) !important;
+    font-weight: 600 !important;
+}
+
+.fi-link:hover {
+    color: var(--pt-bleu) !important;
+}
+
+/* ============================================================
+   SIDEBAR — Or chaud avec icônes bleu marine
+   ============================================================ */
+
 .fi-sidebar {
-    background: linear-gradient(180deg, #1B2B6B 0%, #12205A 100%) !important;
+    background: linear-gradient(180deg,
+        #C9A84C 0%,
+        #B8962A 30%,
+        #A8893A 70%,
+        #96780A 100%) !important;
     border-right: none !important;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.15) !important;
 }
 
 /* Logo dans la sidebar */
 .fi-sidebar-header {
-    background: rgba(255,255,255,0.05) !important;
-    border-bottom: 1px solid rgba(201,168,76,0.3) !important;
+    background: rgba(0,0,0,0.1) !important;
+    border-bottom: 1px solid rgba(27,43,107,0.2) !important;
     padding: 1.25rem 1rem !important;
 }
 
-/* Nom de l'école */
-.fi-brand-name {
-    color: #ffffff !important;
-    font-weight: 700 !important;
-    font-size: 0.95rem !important;
-    line-height: 1.3 !important;
+.fi-sidebar-header .fi-brand-name {
+    color: var(--pt-bleu) !important;
+    font-weight: 900 !important;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.3);
 }
 
 /* Items de navigation */
 .fi-sidebar-item-button {
-    color: rgba(255,255,255,0.8) !important;
-    border-radius: 8px !important;
+    color: var(--pt-bleu) !important;
+    font-weight: 600 !important;
+    border-radius: 10px !important;
     margin: 2px 8px !important;
-    transition: all 0.2s ease !important;
+    transition: all 0.25s ease !important;
 }
 
 .fi-sidebar-item-button:hover {
-    background: rgba(201,168,76,0.15) !important;
-    color: #C9A84C !important;
+    background: rgba(27,43,107,0.12) !important;
+    color: var(--pt-bleu-dark) !important;
+    transform: translateX(4px);
 }
 
 /* Item actif */
 .fi-sidebar-item-button.fi-active {
-    background: rgba(201,168,76,0.2) !important;
-    color: #C9A84C !important;
-    border-left: 3px solid #C9A84C !important;
+    background: var(--pt-bleu) !important;
+    color: var(--pt-or-light) !important;
+    box-shadow: 0 4px 12px rgba(27,43,107,0.3) !important;
 }
 
-/* Icônes sidebar */
-.fi-sidebar-item-icon {
-    color: inherit !important;
+.fi-sidebar-item-button.fi-active .fi-sidebar-item-icon {
+    color: var(--pt-or) !important;
 }
 
 /* Groupes de navigation */
 .fi-sidebar-group-label {
-    color: rgba(201,168,76,0.7) !important;
+    color: rgba(27,43,107,0.6) !important;
     font-size: 0.65rem !important;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
     letter-spacing: 0.1em !important;
     text-transform: uppercase !important;
-    padding: 1rem 1rem 0.25rem !important;
 }
 
 /* ============================================================
-   TOPBAR / HEADER
+   TOPBAR
    ============================================================ */
 .fi-topbar {
-    background: #ffffff !important;
-    border-bottom: 1px solid #e5e7eb !important;
-    box-shadow: 0 1px 3px rgba(27,43,107,0.08) !important;
+    background: var(--pt-blanc) !important;
+    border-bottom: 2px solid var(--pt-or-light) !important;
+    box-shadow: 0 2px 8px rgba(201,168,76,0.1) !important;
 }
 
 /* ============================================================
-   DASHBOARD — Widgets
+   BOUTONS GÉNÉRAUX
    ============================================================ */
 
-/* Cards stats */
-.fi-wi-stats-overview-stat {
-    border-radius: 12px !important;
-    border: none !important;
-    box-shadow: 0 2px 12px rgba(27,43,107,0.08) !important;
-    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-}
-
-.fi-wi-stats-overview-stat:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 8px 24px rgba(27,43,107,0.12) !important;
-}
-
-/* Valeur des stats */
-.fi-wi-stats-overview-stat-value {
-    color: var(--pt-bleu-marine) !important;
-    font-weight: 800 !important;
-    font-size: 2rem !important;
-}
-
-/* ============================================================
-   BOUTONS
-   ============================================================ */
+/* Bouton primaire — Or */
 .fi-btn-primary {
-    background: linear-gradient(135deg, #1B2B6B, #2A3F8F) !important;
+    background: linear-gradient(135deg, var(--pt-or), var(--pt-or-dark)) !important;
     border: none !important;
+    color: var(--pt-bleu) !important;
+    font-weight: 700 !important;
     border-radius: 8px !important;
-    font-weight: 600 !important;
-    box-shadow: 0 2px 8px rgba(27,43,107,0.3) !important;
-    transition: all 0.2s ease !important;
+    box-shadow: 0 2px 8px rgba(201,168,76,0.3) !important;
+    transition: all 0.25s ease !important;
 }
 
 .fi-btn-primary:hover {
-    background: linear-gradient(135deg, #12205A, #1B2B6B) !important;
-    box-shadow: 0 4px 12px rgba(27,43,107,0.4) !important;
     transform: translateY(-1px) !important;
+    box-shadow: 0 6px 16px rgba(201,168,76,0.4) !important;
 }
 
-/* Bouton succès / validation */
-.fi-btn-success {
-    background: linear-gradient(135deg, #C9A84C, #A8893A) !important;
+/* Bouton secondaire — Bleu marine */
+.fi-btn-secondary {
+    background: var(--pt-bleu) !important;
+    color: var(--pt-blanc) !important;
     border: none !important;
+    border-radius: 8px !important;
+}
+
+/* Bouton danger */
+.fi-btn-danger {
+    background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+}
+
+/* ============================================================
+   DASHBOARD — Cards statistiques
+   ============================================================ */
+
+.fi-wi-stats-overview-stat {
+    border-radius: 16px !important;
+    border: none !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important;
+    transition: all 0.3s ease !important;
+    overflow: hidden;
+    position: relative;
+}
+
+.fi-wi-stats-overview-stat::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--pt-or), var(--pt-bleu-ciel));
+}
+
+.fi-wi-stats-overview-stat:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 12px 32px rgba(201,168,76,0.15) !important;
+}
+
+.fi-wi-stats-overview-stat-value {
+    color: var(--pt-bleu) !important;
+    font-weight: 900 !important;
+    font-size: 2.2rem !important;
+}
+
+.fi-wi-stats-overview-stat-description-icon {
+    color: var(--pt-or) !important;
 }
 
 /* ============================================================
    TABLES
    ============================================================ */
+
 .fi-ta-header-cell {
     background: var(--pt-bleu-light) !important;
-    color: var(--pt-bleu-marine) !important;
+    color: var(--pt-bleu) !important;
     font-weight: 700 !important;
-    font-size: 0.75rem !important;
+    font-size: 0.72rem !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
+    letter-spacing: 0.06em !important;
+    border-bottom: 2px solid var(--pt-or) !important;
 }
 
 .fi-ta-row:hover td {
-    background: var(--pt-bleu-light) !important;
+    background: var(--pt-or-light) !important;
 }
 
-/* ============================================================
-   FORMULAIRES
-   ============================================================ */
-.fi-input {
-    border-radius: 8px !important;
-    border-color: #d1d5db !important;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+/* Checkbox de sélection */
+.fi-ta-record-checkbox:checked {
+    background-color: var(--pt-or) !important;
+    border-color: var(--pt-or) !important;
 }
-
-.fi-input:focus {
-    border-color: var(--pt-bleu-marine) !important;
-    box-shadow: 0 0 0 3px rgba(27,43,107,0.1) !important;
-}
-
-/* Labels */
-.fi-fo-field-wrp-label label {
-    color: var(--pt-bleu-marine) !important;
-    font-weight: 600 !important;
-}
-
-/* ============================================================
-   BADGES / STATUTS
-   ============================================================ */
-.fi-badge-color-success { background: #dcfce7 !important; color: #16a34a !important; }
-.fi-badge-color-warning { background: #FDF8EC !important; color: #C9A84C !important; }
-.fi-badge-color-danger  { background: #fee2e2 !important; color: #dc2626 !important; }
-.fi-badge-color-info    { background: #e0f2fe !important; color: #2E9EC5 !important; }
-.fi-badge-color-primary { background: var(--pt-bleu-light) !important; color: var(--pt-bleu-marine) !important; }
 
 /* ============================================================
    PAGE HEADER
    ============================================================ */
+
 .fi-header-heading {
-    color: var(--pt-bleu-marine) !important;
-    font-weight: 800 !important;
+    color: var(--pt-bleu) !important;
+    font-weight: 900 !important;
+    position: relative;
 }
 
-.fi-header-subheading {
-    color: #6b7280 !important;
+.fi-header-heading::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--pt-or);
+    border-radius: 2px;
 }
 
 /* ============================================================
-   CARDS / SECTIONS
+   SECTIONS / CARDS
    ============================================================ */
+
 .fi-section {
-    border-radius: 12px !important;
-    border: 1px solid #e5e7eb !important;
-    box-shadow: 0 1px 4px rgba(27,43,107,0.06) !important;
+    border-radius: 14px !important;
+    border: 1px solid rgba(201,168,76,0.15) !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
 }
 
 .fi-section-header {
-    border-bottom: 2px solid var(--pt-or) !important;
+    border-bottom: 2px solid var(--pt-or-light) !important;
+    background: linear-gradient(90deg, rgba(201,168,76,0.05), transparent) !important;
 }
 
 .fi-section-header-heading {
-    color: var(--pt-bleu-marine) !important;
-    font-weight: 700 !important;
+    color: var(--pt-bleu) !important;
+    font-weight: 800 !important;
 }
 
 /* ============================================================
-   PAGE LOGIN
+   BADGES
    ============================================================ */
-.fi-simple-layout {
-    background: linear-gradient(135deg, #1B2B6B 0%, #12205A 50%, #2E9EC5 100%) !important;
+
+.fi-badge-color-success { background: #dcfce7 !important; color: #16a34a !important; }
+.fi-badge-color-warning { background: var(--pt-or-light) !important; color: var(--pt-or-dark) !important; }
+.fi-badge-color-danger  { background: #fee2e2 !important; color: #dc2626 !important; }
+.fi-badge-color-info    { background: #e0f2fe !important; color: var(--pt-bleu-ciel) !important; }
+.fi-badge-color-primary { background: var(--pt-bleu-light) !important; color: var(--pt-bleu) !important; }
+
+/* ============================================================
+   BREADCRUMBS / NAVIGATION
+   ============================================================ */
+
+.fi-breadcrumbs-item-label {
+    color: var(--pt-bleu) !important;
 }
 
-.fi-simple-main {
-    border-radius: 16px !important;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3) !important;
+.fi-breadcrumbs-item-separator {
+    color: var(--pt-or) !important;
 }
 
 /* ============================================================
    NOTIFICATIONS
    ============================================================ */
+
 .fi-no-notification {
-    border-radius: 10px !important;
-    box-shadow: 0 8px 24px rgba(27,43,107,0.15) !important;
+    border-radius: 12px !important;
+    border-left: 4px solid var(--pt-or) !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
 }
 
 /* ============================================================
-   SCROLLBAR
+   SCROLL TO TOP & SCROLLBAR
    ============================================================ */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: #f1f5f9; }
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--pt-or-light); }
 ::-webkit-scrollbar-thumb {
-    background: var(--pt-bleu-marine);
+    background: linear-gradient(180deg, var(--pt-or), var(--pt-bleu));
     border-radius: 3px;
 }
-::-webkit-scrollbar-thumb:hover { background: var(--pt-or); }
+
+/* ============================================================
+   PRELOADER
+   ============================================================ */
+
+.fi-loading-indicator {
+    color: var(--pt-or) !important;
+}
+
+/* ============================================================
+   PAGINATION
+   ============================================================ */
+
+.fi-pagination-item-btn[aria-current="page"] {
+    background: var(--pt-or) !important;
+    color: var(--pt-bleu) !important;
+    font-weight: 700 !important;
+    border-color: var(--pt-or) !important;
+}
+
+.fi-pagination-item-btn:hover {
+    border-color: var(--pt-or) !important;
+    color: var(--pt-or-dark) !important;
+}
+
+/* ============================================================
+   FORMULAIRES FILAMENT
+   ============================================================ */
+
+.fi-select-input:focus,
+.fi-textarea:focus {
+    border-color: var(--pt-or) !important;
+    box-shadow: 0 0 0 3px var(--pt-or-glow) !important;
+}
+
+/* Toggle switch */
+.fi-toggle-input:checked {
+    background-color: var(--pt-or) !important;
+}
+
+/* Radio actif */
+.fi-radio-input:checked {
+    background-color: var(--pt-or) !important;
+    border-color: var(--pt-or) !important;
+}
+
+/* ============================================================
+   WIDGET ACCOUNT (user menu)
+   ============================================================ */
+
+.fi-account-widget {
+    border: 1px solid rgba(201,168,76,0.2) !important;
+    border-radius: 12px !important;
+}
+
+/* ============================================================
+   DROPDOWN MENUS
+   ============================================================ */
+
+.fi-dropdown-panel {
+    border: 1px solid rgba(201,168,76,0.2) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+.fi-dropdown-list-item-button:hover {
+    background: var(--pt-or-light) !important;
+    color: var(--pt-bleu) !important;
+}
