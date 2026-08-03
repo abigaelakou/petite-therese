@@ -589,7 +589,7 @@
 
 
     {{-- ==============================
-         GALERIE APERÇU
+         GALERIE APERÇU — DYNAMIQUE
     ============================== --}}
     <div class="gallery-area py-120">
         <div class="container">
@@ -604,73 +604,65 @@
                     </div>
                 </div>
             </div>
+
+            @if(isset($photos) && $photos->count() > 0)
             <div class="row popup-gallery">
-                <div class="col-md-4 wow fadeInUp" data-wow-delay=".25s">
+                @foreach($photos->chunk(2) as $index => $chunk)
+                <div class="col-md-4 wow fadeInUp" data-wow-delay="{{ ($index * 0.25) . 's' }}">
+                    @foreach($chunk as $photo)
                     <div class="gallery-item">
                         <div class="gallery-img">
-                            <img src="{{ asset('assets/img/gallery/01.jpg') }}" alt="">
+                            <img src="{{ $photo->photo_url }}" alt="{{ $photo->titre ?? 'Photo école' }}">
                         </div>
                         <div class="gallery-content">
-                            <a class="popup-img gallery-link" href="{{ asset('assets/img/gallery/01.jpg') }}">
+                            <a class="popup-img gallery-link" href="{{ $photo->photo_url }}">
                                 <i class="fas fa-plus"></i>
                             </a>
                         </div>
                     </div>
+                    @endforeach
+                </div>
+                @endforeach
+            </div>
+            @else
+            <div class="row popup-gallery">
+                <div class="col-md-4 wow fadeInUp" data-wow-delay=".25s">
                     <div class="gallery-item">
-                        <div class="gallery-img">
-                            <img src="{{ asset('assets/img/gallery/02.jpg') }}" alt="">
-                        </div>
-                        <div class="gallery-content">
-                            <a class="popup-img gallery-link" href="{{ asset('assets/img/gallery/02.jpg') }}">
-                                <i class="fas fa-plus"></i>
-                            </a>
-                        </div>
+                        <div class="gallery-img"><img src="{{ asset('assets/img/gallery/01.jpg') }}" alt=""></div>
+                        <div class="gallery-content"><a class="popup-img gallery-link" href="{{ asset('assets/img/gallery/01.jpg') }}"><i class="fas fa-plus"></i></a></div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-img"><img src="{{ asset('assets/img/gallery/02.jpg') }}" alt=""></div>
+                        <div class="gallery-content"><a class="popup-img gallery-link" href="{{ asset('assets/img/gallery/02.jpg') }}"><i class="fas fa-plus"></i></a></div>
                     </div>
                 </div>
                 <div class="col-md-4 wow fadeInUp" data-wow-delay=".50s">
                     <div class="gallery-item">
-                        <div class="gallery-img">
-                            <img src="{{ asset('assets/img/gallery/03.jpg') }}" alt="">
-                        </div>
-                        <div class="gallery-content">
-                            <a class="popup-img gallery-link" href="{{ asset('assets/img/gallery/03.jpg') }}">
-                                <i class="fas fa-plus"></i>
-                            </a>
-                        </div>
+                        <div class="gallery-img"><img src="{{ asset('assets/img/gallery/03.jpg') }}" alt=""></div>
+                        <div class="gallery-content"><a class="popup-img gallery-link" href="{{ asset('assets/img/gallery/03.jpg') }}"><i class="fas fa-plus"></i></a></div>
                     </div>
                     <div class="gallery-item">
-                        <div class="gallery-img">
-                            <img src="{{ asset('assets/img/gallery/04.jpg') }}" alt="">
-                        </div>
-                        <div class="gallery-content">
-                            <a class="popup-img gallery-link" href="{{ asset('assets/img/gallery/04.jpg') }}">
-                                <i class="fas fa-plus"></i>
-                            </a>
-                        </div>
+                        <div class="gallery-img"><img src="{{ asset('assets/img/gallery/04.jpg') }}" alt=""></div>
+                        <div class="gallery-content"><a class="popup-img gallery-link" href="{{ asset('assets/img/gallery/04.jpg') }}"><i class="fas fa-plus"></i></a></div>
                     </div>
                 </div>
                 <div class="col-md-4 wow fadeInUp" data-wow-delay=".75s">
                     <div class="gallery-item">
-                        <div class="gallery-img">
-                            <img src="{{ asset('assets/img/gallery/05.jpg') }}" alt="">
-                        </div>
-                        <div class="gallery-content">
-                            <a class="popup-img gallery-link" href="{{ asset('assets/img/gallery/05.jpg') }}">
-                                <i class="fas fa-plus"></i>
-                            </a>
-                        </div>
+                        <div class="gallery-img"><img src="{{ asset('assets/img/gallery/05.jpg') }}" alt=""></div>
+                        <div class="gallery-content"><a class="popup-img gallery-link" href="{{ asset('assets/img/gallery/05.jpg') }}"><i class="fas fa-plus"></i></a></div>
                     </div>
                     <div class="gallery-item">
-                        <div class="gallery-img">
-                            <img src="{{ asset('assets/img/gallery/06.jpg') }}" alt="">
-                        </div>
-                        <div class="gallery-content">
-                            <a class="popup-img gallery-link" href="{{ asset('assets/img/gallery/06.jpg') }}">
-                                <i class="fas fa-plus"></i>
-                            </a>
-                        </div>
+                        <div class="gallery-img"><img src="{{ asset('assets/img/gallery/06.jpg') }}" alt=""></div>
+                        <div class="gallery-content"><a class="popup-img gallery-link" href="{{ asset('assets/img/gallery/06.jpg') }}"><i class="fas fa-plus"></i></a></div>
                     </div>
                 </div>
+            </div>
+            @endif
+
+            <div class="text-center mt-4">
+                <a href="{{ route('galerie') }}" class="theme-btn">
+                    Voir toute la galerie <i class="fas fa-arrow-right-long"></i>
+                </a>
             </div>
         </div>
     </div>
