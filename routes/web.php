@@ -13,3 +13,6 @@ Route::get('/contact',      [PageController::class, 'contact'])->name('contact')
 
 // POST unique pour les deux formulaires (inscription + contact)
 Route::post('/contact',     [PageController::class, 'contactStore'])->name('contact.store');
+Route::get('/paiements/{paiement}/recu', [App\Http\Controllers\PaiementController::class, 'recu'])
+    ->name('paiements.recu')
+    ->middleware('auth');
