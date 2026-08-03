@@ -13,12 +13,25 @@ class Classe extends Model
         'cycle', 'capacite', 'enseignant_id',
     ];
 
-    // Labels lisibles pour les niveaux
     const NIVEAUX = [
-        'ps'  => 'Petite Section (PS)',
         'ms'  => 'Moyenne Section (MS)',
         'gs'  => 'Grande Section (GS)',
-        'cp'  => 'CP',
+        'cp1' => 'CP1',
+        'cp2' => 'CP2',
+        'ce1' => 'CE1',
+        'ce2' => 'CE2',
+        'cm1' => 'CM1',
+        'cm2' => 'CM2',
+    ];
+
+    const NIVEAUX_MATERNELLE = [
+        'ms' => 'Moyenne Section (MS)',
+        'gs' => 'Grande Section (GS)',
+    ];
+
+    const NIVEAUX_PRIMAIRE = [
+        'cp1' => 'CP1',
+        'cp2' => 'CP2',
         'ce1' => 'CE1',
         'ce2' => 'CE2',
         'cm1' => 'CM1',
@@ -30,7 +43,27 @@ class Classe extends Model
         'primaire'   => 'Primaire',
     ];
 
-    // Relations
+    const CLASSES_PAR_NIVEAU = [
+        'ms'  => ['MS A',  'MS B'],
+        'gs'  => ['GS A',  'GS B'],
+        'cp1' => ['CP1 A', 'CP1 B'],
+        'cp2' => ['CP2 A', 'CP2 B'],
+        'ce1' => ['CE1 A', 'CE1 B'],
+        'ce2' => ['CE2 A', 'CE2 B'],
+        'cm1' => ['CM1 A', 'CM1 B'],
+        'cm2' => ['CM2 A', 'CM2 B'],
+    ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::saving(function ($classe) {
+            $classe->cycle = in_array($classe->niveau, ['ms', 'gs'])
+                ? 'maternelle'
+                : 'primaire';
+        });
+    }
+
     public function anneeScolaire(): BelongsTo
     {
         return $this->belongsTo(AnneeScolaire::class);
@@ -64,13 +97,6 @@ class Classe extends Model
     public function emploisDuTemps(): HasMany
     {
         return $this->hasMany(EmploiDuTemps::class);
-    }
-
-    // Accesseurs
-    public function getNomCompletAttribute(): string
-    {
-        $niveau = self::NIVEAUX[$this->niveau] ?? $this->niveau;
-        return "{$this->nom} — {$niveau}";
     }
 
     public function getNombreElevesAttribute(): int
