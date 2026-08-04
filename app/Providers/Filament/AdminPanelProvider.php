@@ -27,6 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login() // ← AJOUTÉ — crée la route filament.admin.auth.login
+            ->profile() 
 
             // ============================================================
             // BRANDING — Logo + Nom école
@@ -79,7 +80,13 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
+                // Widgets\AccountWidget::class,
+                \App\Filament\Widgets\WelcomeWidget::class,
+                \App\Filament\Widgets\StatsOverview::class,
+                \App\Filament\Widgets\PaiementsChart::class,
+                \App\Filament\Widgets\ElevesParClasse::class,
+                \App\Filament\Widgets\DernieresPréInscriptions::class,
+                \App\Filament\Widgets\Impayes::class,
             ])
 
             // ============================================================
