@@ -16,3 +16,22 @@ Route::post('/contact',     [PageController::class, 'contactStore'])->name('cont
 Route::get('/paiements/{paiement}/recu', [App\Http\Controllers\PaiementController::class, 'recu'])
     ->name('paiements.recu')
     ->middleware('auth');
+
+
+    
+    Route::middleware('auth')->group(function () {
+    // Reçu paiement
+    Route::get('/paiements/{paiement}/recu', [App\Http\Controllers\PaiementController::class, 'recu'])
+        ->name('paiements.recu');
+ 
+    // Rapports PDF
+    Route::get('/rapports/paiements/pdf', [App\Http\Controllers\RapportController::class, 'paiementsPdf'])
+        ->name('rapports.paiements.pdf');
+    Route::get('/rapports/impayes/pdf', [App\Http\Controllers\RapportController::class, 'impayes_Pdf'])
+        ->name('rapports.impayes.pdf');
+    Route::get('/rapports/eleves/pdf', [App\Http\Controllers\RapportController::class, 'elevesPdf'])
+        ->name('rapports.eleves.pdf');
+    Route::get('/rapports/classes/pdf', [App\Http\Controllers\RapportController::class, 'classesPdf'])
+        ->name('rapports.classes.pdf');
+});
+ 
