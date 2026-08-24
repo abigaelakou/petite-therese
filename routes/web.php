@@ -34,4 +34,16 @@ Route::get('/paiements/{paiement}/recu', [App\Http\Controllers\PaiementControlle
     Route::get('/rapports/classes/pdf', [App\Http\Controllers\RapportController::class, 'classesPdf'])
         ->name('rapports.classes.pdf');
 });
+
+
+Route::middleware('auth')->get('/archives/{archive}/download', function(\App\Models\Archive $archive) {
+    // Vérifier que seul le super_admin peut télécharger
+if (!auth()->user()->hasRole('super_admin')) {
+        abort(403, 'Accès non autorisé.');
+    }
+    if (!$archive->chemin_fichier || !\Illuminate\Support\Facades\Storage::disk('local')->exists($archive->chemin_fichier)) {
+        abort(404, 'Fichier introuvable.');
+    }
+    return \Illuminate\Support\Facades\Storage::disk('local')->download($archive->chemin_fichier);
+})->name('archives.download');
  
