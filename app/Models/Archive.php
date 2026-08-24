@@ -17,11 +17,40 @@ class Archive extends Model
     ];
 
     const TYPES = [
-        'annee_scolaire' => 'Année scolaire',
-        'eleve'          => 'Dossier élève',
-        'classe'         => 'Classe',
-        'paiements'      => 'Paiements',
-        'bulletins'      => 'Bulletins',
+        // Données scolaires
+        'Données scolaires' => [
+            'annee_scolaire' => 'Année scolaire complète',
+            'eleve'          => 'Dossier élève',
+            'classe'         => 'Registre de classe',
+            'paiements'      => 'Registre des paiements',
+            'bulletins'      => 'Bulletins scolaires',
+        ],
+        // Documents administratifs
+        'Documents administratifs' => [
+            'registre_commerce'      => 'Registre de commerce',
+            'dossier_administratif'  => 'Dossier administratif',
+            'contrat'                => 'Contrat',
+            'autorisation'           => 'Autorisation / Agrément',
+            'correspondance'         => 'Correspondance officielle',
+            'rapport_inspection'     => 'Rapport d\'inspection',
+            'autre'                  => 'Autre document',
+        ],
+    ];
+
+    // Version plate pour les badges
+    const TYPES_FLAT = [
+        'annee_scolaire'        => 'Année scolaire',
+        'eleve'                 => 'Dossier élève',
+        'classe'                => 'Registre classe',
+        'paiements'             => 'Paiements',
+        'bulletins'             => 'Bulletins',
+        'registre_commerce'     => 'Registre commerce',
+        'dossier_administratif' => 'Dossier admin.',
+        'contrat'               => 'Contrat',
+        'autorisation'          => 'Autorisation',
+        'correspondance'        => 'Correspondance',
+        'rapport_inspection'    => 'Rapport inspection',
+        'autre'                 => 'Autre',
     ];
 
     public function anneeScolaire(): BelongsTo

@@ -61,7 +61,11 @@ return [
         ],
 
     ],
-
+'private' => [
+    'driver' => 'local',
+    'root'   => storage_path('app/private'),
+    'throw'  => false,
+],
     /*
     |--------------------------------------------------------------------------
     | Symbolic Links
