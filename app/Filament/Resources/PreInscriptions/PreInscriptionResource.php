@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\PreInscriptions;
 
+use App\Filament\Resources\PreInscriptions\Pages\ListPreInscriptions;
 use App\Filament\Resources\PreInscriptions\Pages\CreatePreInscription;
 use App\Filament\Resources\PreInscriptions\Pages\EditPreInscription;
-use App\Filament\Resources\PreInscriptions\Pages\ListPreInscriptions;
 use App\Filament\Resources\PreInscriptions\Schemas\PreInscriptionForm;
 use App\Filament\Resources\PreInscriptions\Tables\PreInscriptionsTable;
 use App\Models\PreInscription;
@@ -24,6 +24,11 @@ class PreInscriptionResource extends Resource
     protected static ?int $navigationSort = 4;
     protected static ?string $recordTitleAttribute = 'nom_eleve';
 
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Site vitrine';
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return (string) PreInscription::where('statut', 'en_attente')->count() ?: null;
@@ -32,6 +37,31 @@ class PreInscriptionResource extends Resource
     public static function getNavigationBadgeColor(): ?string
     {
         return 'warning';
+    }
+
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur', 'secretaire']) ?? false;
+    }
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur', 'secretaire']) ?? false;
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur', 'secretaire']) ?? false;
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
+    public static function canDeleteAny(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
     }
 
     public static function form(Schema $schema): Schema
@@ -44,11 +74,6 @@ class PreInscriptionResource extends Resource
         return PreInscriptionsTable::configure($table);
     }
 
-    public static function getNavigationGroup(): ?string
-    {
-        return 'Site vitrine';
-    }
-
     public static function getRelations(): array
     {
         return [];
@@ -59,7 +84,7 @@ class PreInscriptionResource extends Resource
         return [
             'index'  => ListPreInscriptions::route('/'),
             'create'  => CreatePreInscription::route('/create'),
-            'edit'  => EditPreInscription::route('/{record}/edit'),
+            'edit'  => EditPreInscription::route('/edit'),
         ];
     }
 }

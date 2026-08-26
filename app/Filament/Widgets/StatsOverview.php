@@ -166,6 +166,36 @@ class StatsOverview extends BaseWidget
             ];
         }
 
+
+        // ── SECRÉTAIRE ───────────────────────────────────────────
+        if ($role === 'secretaire') {
+            $totalEleves = Eleve::where('est_actif', true)->where('est_archive', false)->count();
+            $elevesInscrits = $anneeActive
+                ? Inscription::where('annee_scolaire_id', $anneeActive->id)->where('statut', 'validee')->count()
+                : 0;
+            $preInscriptions = PreInscription::where('statut', 'en_attente')->count();
+            $contacts = \App\Models\Contact::where('statut', 'non_lu')->count();
+
+            return [
+                Stat::make('Élèves actifs', $totalEleves)
+                    ->description($elevesInscrits . ' inscrits cette année')
+                    ->descriptionIcon('heroicon-m-academic-cap')
+                    ->color('primary')->icon('heroicon-o-users'),
+
+                Stat::make('Pré-inscriptions', $preInscriptions)
+                    ->description('En attente de validation')
+                    ->descriptionIcon('heroicon-m-clock')
+                    ->color($preInscriptions > 0 ? 'warning' : 'success')
+                    ->icon('heroicon-o-clipboard-document-list'),
+
+                Stat::make('Messages non lus', $contacts)
+                    ->description('Messages du site à traiter')
+                    ->descriptionIcon('heroicon-m-envelope')
+                    ->color($contacts > 0 ? 'danger' : 'success')
+                    ->icon('heroicon-o-envelope'),
+            ];
+        }
+
         return [];
     }
 }

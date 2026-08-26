@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\Inscriptions;
 
+use App\Filament\Resources\Inscriptions\Pages\ListInscriptions;
 use App\Filament\Resources\Inscriptions\Pages\CreateInscription;
 use App\Filament\Resources\Inscriptions\Pages\EditInscription;
-use App\Filament\Resources\Inscriptions\Pages\ListInscriptions;
 use App\Filament\Resources\Inscriptions\Schemas\InscriptionForm;
 use App\Filament\Resources\Inscriptions\Tables\InscriptionsTable;
 use App\Models\Inscription;
@@ -39,6 +39,31 @@ class InscriptionResource extends Resource
         return 'warning';
     }
 
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur', 'enseignant', 'secretaire']) ?? false;
+    }
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur', 'secretaire']) ?? false;
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur', 'secretaire']) ?? false;
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
+    public static function canDeleteAny(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
     public static function form(Schema $schema): Schema
     {
         return InscriptionForm::configure($schema);
@@ -58,8 +83,8 @@ class InscriptionResource extends Resource
     {
         return [
             'index'  => ListInscriptions::route('/'),
-            'create' => CreateInscription::route('/create'),
-            'edit'   => EditInscription::route('/{record}/edit'),
+            'create'  => CreateInscription::route('/create'),
+            'edit'  => EditInscription::route('/edit'),
         ];
     }
 }

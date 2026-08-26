@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\GaleriePhotos;
 
+use App\Filament\Resources\GaleriePhotos\Pages\ListGaleriePhotos;
 use App\Filament\Resources\GaleriePhotos\Pages\CreateGaleriePhoto;
 use App\Filament\Resources\GaleriePhotos\Pages\EditGaleriePhoto;
-use App\Filament\Resources\GaleriePhotos\Pages\ListGaleriePhotos;
 use App\Filament\Resources\GaleriePhotos\Schemas\GaleriePhotoForm;
 use App\Filament\Resources\GaleriePhotos\Tables\GaleriePhotosTable;
 use App\Models\GaleriePhoto;
@@ -24,6 +24,36 @@ class GaleriePhotoResource extends Resource
     protected static ?int $navigationSort = 2;
     protected static ?string $recordTitleAttribute = 'titre';
 
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Site vitrine';
+    }
+
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
+    public static function canDeleteAny(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
     public static function form(Schema $schema): Schema
     {
         return GaleriePhotoForm::configure($schema);
@@ -32,11 +62,6 @@ class GaleriePhotoResource extends Resource
     public static function table(Table $table): Table
     {
         return GaleriePhotosTable::configure($table);
-    }
-
-    public static function getNavigationGroup(): ?string
-    {
-        return 'Site vitrine';
     }
 
     public static function getRelations(): array
@@ -49,7 +74,7 @@ class GaleriePhotoResource extends Resource
         return [
             'index'  => ListGaleriePhotos::route('/'),
             'create'  => CreateGaleriePhoto::route('/create'),
-            'edit'  => EditGaleriePhoto::route('/{record}/edit'),
+            'edit'  => EditGaleriePhoto::route('/edit'),
         ];
     }
 }

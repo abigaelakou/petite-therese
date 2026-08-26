@@ -16,7 +16,7 @@ class DernieresPréInscriptions extends BaseWidget
 
     public static function canView(): bool
     {
-        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur', 'secretaire']) ?? false;
     }
 
     public function table(Table $table): Table

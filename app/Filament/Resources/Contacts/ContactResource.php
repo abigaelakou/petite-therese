@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\Contacts;
 
-use App\Filament\Resources\Contacts\Pages\EditContact;
 use App\Filament\Resources\Contacts\Pages\ListContacts;
+use App\Filament\Resources\Contacts\Pages\EditContact;
 use App\Filament\Resources\Contacts\Schemas\ContactForm;
 use App\Filament\Resources\Contacts\Tables\ContactsTable;
 use App\Models\Contact;
@@ -23,6 +23,11 @@ class ContactResource extends Resource
     protected static ?int $navigationSort = 3;
     protected static ?string $recordTitleAttribute = 'nom';
 
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Site vitrine';
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return (string) Contact::where('statut', 'non_lu')->count() ?: null;
@@ -31,6 +36,31 @@ class ContactResource extends Resource
     public static function getNavigationBadgeColor(): ?string
     {
         return 'danger';
+    }
+
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur', 'secretaire']) ?? false;
+    }
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin']) ?? false;
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur', 'secretaire']) ?? false;
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
+    public static function canDeleteAny(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
     }
 
     public static function form(Schema $schema): Schema
@@ -43,11 +73,6 @@ class ContactResource extends Resource
         return ContactsTable::configure($table);
     }
 
-    public static function getNavigationGroup(): ?string
-    {
-        return 'Site vitrine';
-    }
-
     public static function getRelations(): array
     {
         return [];
@@ -56,8 +81,8 @@ class ContactResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListContacts::route('/'),
-            'edit'  => EditContact::route('/{record}/edit'),
+            'index'  => ListContacts::route('/'),
+            'edit'  => EditContact::route('/edit'),
         ];
     }
 }

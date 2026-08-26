@@ -9,12 +9,12 @@
             'comptable'   => '💰 Comptable',
             'enseignant'  => '📚 Enseignant',
             'parent'      => '👨‍👩‍👧 Parent / Tuteur',
+            'secretaire'  => '📋 Secrétaire',
         ];
         $roleLabel = $roleLabels[$role] ?? $role;
 
-        // Actions rapides selon le rôle
         $actions = [];
-        if (in_array($role, ['super_admin', 'directeur'])) {
+        if (in_array($role, ['super_admin', 'directeur', 'secretaire'])) {
             $actions[] = ['url' => route('filament.admin.resources.eleves.create'), 'label' => '+ Nouvel élève', 'primary' => true];
             $actions[] = ['url' => route('filament.admin.resources.inscriptions.create'), 'label' => '+ Inscription', 'primary' => false];
         }
@@ -23,25 +23,14 @@
         }
     @endphp
 
-    <div style="
-        background: linear-gradient(135deg, #1B2B6B 0%, #12205A 60%, #2E9EC5 100%);
-        border-radius: 16px;
-        padding: 1.5rem 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 1rem;
-        box-shadow: 0 4px 20px rgba(27,43,107,0.2);
-        position: relative;
-        overflow: hidden;
-    ">
+    <div style="background:linear-gradient(135deg,#1B2B6B 0%,#12205A 60%,#2E9EC5 100%);border-radius:16px;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;box-shadow:0 4px 20px rgba(27,43,107,0.2);position:relative;overflow:hidden;">
+
         <div style="position:absolute;top:-30px;right:-30px;width:150px;height:150px;background:rgba(201,168,76,0.08);border-radius:50%;"></div>
         <div style="position:absolute;bottom:-20px;right:100px;width:80px;height:80px;background:rgba(46,158,197,0.1);border-radius:50%;"></div>
 
         {{-- Avatar + Infos --}}
         <div style="display:flex;align-items:center;gap:1rem;">
-            @if($user->photo ?? false)
+            @if($user->photo)
                 <img src="{{ asset('storage/' . $user->photo) }}"
                      style="width:56px;height:56px;border-radius:50%;object-fit:cover;border:3px solid rgba(201,168,76,0.5);">
             @else
@@ -79,25 +68,25 @@
 
         {{-- Actions rapides --}}
         <div style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;">
-            @foreach($actions as $i => $action)
-            <a href="{{ $action['url'] }}" style="
-                {{ $action['primary'] ? 'background:linear-gradient(135deg,#C9A84C,#A8893A);color:#1B2B6B;box-shadow:0 2px 8px rgba(201,168,76,0.3);' : 'background:rgba(255,255,255,0.1);color:#ffffff;border:1px solid rgba(255,255,255,0.2);' }}
-                padding:8px 16px;border-radius:8px;font-size:0.8rem;font-weight:700;text-decoration:none;
-            ">{{ $action['label'] }}</a>
+            @foreach($actions as $action)
+            <a href="{{ $action['url'] }}" style="{{ $action['primary'] ? 'background:linear-gradient(135deg,#C9A84C,#A8893A);color:#1B2B6B;box-shadow:0 2px 8px rgba(201,168,76,0.3);' : 'background:rgba(255,255,255,0.1);color:#ffffff;border:1px solid rgba(255,255,255,0.2);' }}padding:8px 16px;border-radius:8px;font-size:0.8rem;font-weight:700;text-decoration:none;">
+                {{ $action['label'] }}
+            </a>
             @endforeach
 
-            {{-- Profil --}}
-            <a href="{{ route('filament.admin.pages.edit-profile') }}" 
-   style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.8);padding:8px 16px;border-radius:8px;font-size:0.8rem;font-weight:700;text-decoration:none;border:1px solid rgba(255,255,255,0.15);">
-    Mon profil
-</a>
+            <a href="{{ route('filament.admin.pages.edit-profile') }}"
+               style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.8);padding:8px 16px;border-radius:8px;font-size:0.8rem;font-weight:700;text-decoration:none;border:1px solid rgba(255,255,255,0.15);">
+                Mon profil
+            </a>
 
-            {{-- Déconnexion --}}
             <a href="#" onclick="event.preventDefault();document.getElementById('logout-form-widget').submit();"
                style="background:rgba(220,38,38,0.15);color:#fca5a5;padding:8px 16px;border-radius:8px;font-size:0.8rem;font-weight:700;text-decoration:none;border:1px solid rgba(220,38,38,0.3);">
                 Déconnexion
             </a>
-            <form id="logout-form-widget" action="{{ route('filament.admin.auth.logout') }}" method="POST" style="display:none;">@csrf</form>
+            <form id="logout-form-widget" action="{{ route('filament.admin.auth.logout') }}" method="POST" style="display:none;">
+                @csrf
+            </form>
         </div>
+
     </div>
 </x-filament-widgets::widget>

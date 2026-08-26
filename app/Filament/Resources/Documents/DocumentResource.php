@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\Documents;
 
+use App\Filament\Resources\Documents\Pages\ListDocuments;
 use App\Filament\Resources\Documents\Pages\CreateDocument;
 use App\Filament\Resources\Documents\Pages\EditDocument;
-use App\Filament\Resources\Documents\Pages\ListDocuments;
 use App\Filament\Resources\Documents\Schemas\DocumentForm;
 use App\Filament\Resources\Documents\Tables\DocumentsTable;
 use App\Models\Document;
@@ -18,7 +18,7 @@ class DocumentResource extends Resource
 {
     protected static ?string $model = Document::class;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentText;
-    protected static ?string $navigationLabel = 'Documents élèves';
+    protected static ?string $navigationLabel = 'Documents';
     protected static ?string $modelLabel = 'Document';
     protected static ?string $pluralModelLabel = 'Documents';
     protected static ?int $navigationSort = 1;
@@ -29,7 +29,27 @@ class DocumentResource extends Resource
         return 'Ressources';
     }
 
-    public static function canAccess(): bool
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
+    public static function canDeleteAny(): bool
     {
         return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
     }
@@ -53,8 +73,8 @@ class DocumentResource extends Resource
     {
         return [
             'index'  => ListDocuments::route('/'),
-            'create' => CreateDocument::route('/create'),
-            'edit'   => EditDocument::route('/{record}/edit'),
+            'create'  => CreateDocument::route('/create'),
+            'edit'  => EditDocument::route('/edit'),
         ];
     }
 }
