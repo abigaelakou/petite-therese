@@ -33,8 +33,9 @@ class AdminPanelProvider extends PanelProvider
             // BRANDING — Logo + Nom école
             // ============================================================
             ->brandName('La Petite Thérèse')
-            ->brandLogo(asset('assets/img/logo/logoNew.jpg'))
-            ->brandLogoHeight('3rem')
+            ->brandLogo('http://petite-therese.test/assets/img/logo/logoNew.jpg')
+            ->brandLogoHeight('50px')
+            // ->brandLogoHeight('3rem')
             ->favicon(asset('assets/img/logo/favicon.png'))
 
             // ============================================================

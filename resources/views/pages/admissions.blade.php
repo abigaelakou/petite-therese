@@ -137,7 +137,7 @@
                             <div class="choose-item-info">
                                 {{-- Remplacer par les vrais montants --}}
                                 <h4>Maternelle</h4>
-                                <p>PS · MS · GS — Frais à confirmer auprès du secrétariat.</p>
+                                <p>MS · GS — Frais à confirmer auprès du secrétariat.</p>
                             </div>
                         </div>
                     </div>
@@ -307,12 +307,13 @@
                                         <select class="form-select @error('niveau') is-invalid @enderror" name="niveau" required>
                                             <option value="">Niveau souhaité</option>
                                             <optgroup label="Maternelle">
-                                                <option value="ps">Petite Section (PS)</option>
+                                                <!-- <option value="ps">Petite Section (PS)</option> -->
                                                 <option value="ms">Moyenne Section (MS)</option>
                                                 <option value="gs">Grande Section (GS)</option>
                                             </optgroup>
                                             <optgroup label="Primaire">
-                                                <option value="cp">CP</option>
+                                                <option value="cp1">CP1</option>
+                                                <option value="cp2">CP2</option>
                                                 <option value="ce1">CE1</option>
                                                 <option value="ce2">CE2</option>
                                                 <option value="cm1">CM1</option>
