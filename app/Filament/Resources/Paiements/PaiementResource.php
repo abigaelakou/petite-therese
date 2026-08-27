@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\Paiements;
 
+use App\Filament\Resources\Paiements\Pages\ListPaiements;
 use App\Filament\Resources\Paiements\Pages\CreatePaiement;
 use App\Filament\Resources\Paiements\Pages\EditPaiement;
-use App\Filament\Resources\Paiements\Pages\ListPaiements;
 use App\Filament\Resources\Paiements\Schemas\PaiementForm;
 use App\Filament\Resources\Paiements\Tables\PaiementsTable;
 use App\Models\Paiement;
@@ -39,6 +39,31 @@ class PaiementResource extends Resource
         return 'warning';
     }
 
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur', 'comptable']) ?? false;
+    }
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'comptable']) ?? false;
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'comptable']) ?? false;
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin']) ?? false;
+    }
+
+    public static function canDeleteAny(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin']) ?? false;
+    }
+
     public static function form(Schema $schema): Schema
     {
         return PaiementForm::configure($schema);
@@ -58,8 +83,8 @@ class PaiementResource extends Resource
     {
         return [
             'index'  => ListPaiements::route('/'),
-            'create' => CreatePaiement::route('/create'),
-            'edit'   => EditPaiement::route('/{record}/edit'),
+            'create'  => CreatePaiement::route('/create'),
+            'edit'  => EditPaiement::route('/edit'),
         ];
     }
 }

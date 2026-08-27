@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\Eleves;
 
+use App\Filament\Resources\Eleves\Pages\ListEleves;
 use App\Filament\Resources\Eleves\Pages\CreateEleve;
 use App\Filament\Resources\Eleves\Pages\EditEleve;
-use App\Filament\Resources\Eleves\Pages\ListEleves;
 use App\Filament\Resources\Eleves\Schemas\EleveForm;
 use App\Filament\Resources\Eleves\Tables\ElevesTable;
 use App\Models\Eleve;
@@ -34,6 +34,36 @@ class EleveResource extends Resource
         return (string) Eleve::where('est_actif', true)->where('est_archive', false)->count() ?: null;
     }
 
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return 'primary';
+    }
+
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur', 'enseignant', 'secretaire']) ?? false;
+    }
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur', 'secretaire']) ?? false;
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur', 'secretaire']) ?? false;
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
+    public static function canDeleteAny(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
     public static function form(Schema $schema): Schema
     {
         return EleveForm::configure($schema);
@@ -53,8 +83,8 @@ class EleveResource extends Resource
     {
         return [
             'index'  => ListEleves::route('/'),
-            'create' => CreateEleve::route('/create'),
-            'edit'   => EditEleve::route('/{record}/edit'),
+            'create'  => CreateEleve::route('/create'),
+            'edit'  => EditEleve::route('/edit'),
         ];
     }
 }

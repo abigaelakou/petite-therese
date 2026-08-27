@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\AnneeScolaires;
 
+use App\Filament\Resources\AnneeScolaires\Pages\ListAnneeScolaires;
 use App\Filament\Resources\AnneeScolaires\Pages\CreateAnneeScolaire;
 use App\Filament\Resources\AnneeScolaires\Pages\EditAnneeScolaire;
-use App\Filament\Resources\AnneeScolaires\Pages\ListAnneeScolaires;
 use App\Filament\Resources\AnneeScolaires\Schemas\AnneeScolaireForm;
 use App\Filament\Resources\AnneeScolaires\Tables\AnneeScolairesTable;
 use App\Models\AnneeScolaire;
@@ -29,6 +29,31 @@ class AnneeScolaireResource extends Resource
         return 'Scolarité';
     }
 
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin']) ?? false;
+    }
+
+    public static function canDeleteAny(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin']) ?? false;
+    }
+
     public static function form(Schema $schema): Schema
     {
         return AnneeScolaireForm::configure($schema);
@@ -48,8 +73,8 @@ class AnneeScolaireResource extends Resource
     {
         return [
             'index'  => ListAnneeScolaires::route('/'),
-            'create' => CreateAnneeScolaire::route('/create'),
-            'edit'   => EditAnneeScolaire::route('/{record}/edit'),
+            'create'  => CreateAnneeScolaire::route('/create'),
+            'edit'  => EditAnneeScolaire::route('/edit'),
         ];
     }
 }

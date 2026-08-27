@@ -65,6 +65,7 @@ class UserForm
                             'comptable'  => '💰 Comptable',
                             'enseignant' => '📚 Enseignant',
                             'parent'     => '👨‍👩‍👧 Parent / Tuteur',
+                        'secretaire' => '📋 Secrétaire',
                         ])
                         ->required()
                         ->native(false)

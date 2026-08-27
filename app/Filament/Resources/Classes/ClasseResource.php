@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\Classes;
 
+use App\Filament\Resources\Classes\Pages\ListClasses;
 use App\Filament\Resources\Classes\Pages\CreateClasse;
 use App\Filament\Resources\Classes\Pages\EditClasse;
-use App\Filament\Resources\Classes\Pages\ListClasses;
 use App\Filament\Resources\Classes\Schemas\ClasseForm;
 use App\Filament\Resources\Classes\Tables\ClassesTable;
 use App\Models\Classe;
@@ -29,6 +29,31 @@ class ClasseResource extends Resource
         return 'Scolarité';
     }
 
+    public static function canViewAny(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur', 'enseignant', 'secretaire']) ?? false;
+    }
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
+    public static function canDeleteAny(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin', 'directeur']) ?? false;
+    }
+
     public static function form(Schema $schema): Schema
     {
         return ClasseForm::configure($schema);
@@ -48,8 +73,8 @@ class ClasseResource extends Resource
     {
         return [
             'index'  => ListClasses::route('/'),
-            'create' => CreateClasse::route('/create'),
-            'edit'   => EditClasse::route('/{record}/edit'),
+            'create'  => CreateClasse::route('/create'),
+           'edit'   => EditClasse::route('/{record}/edit'),
         ];
     }
 }

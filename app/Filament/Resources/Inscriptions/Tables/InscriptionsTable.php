@@ -112,7 +112,9 @@ class InscriptionsTable
                         Notification::make()->title('Inscription refusée')->warning()->send();
                     }),
 
-                EditAction::make()->label('Modifier'),
+               EditAction::make()
+    ->label('Modifier')
+    ->visible(fn() => auth()->user()->hasAnyRole(['super_admin', 'directeur', 'secretaire'])),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

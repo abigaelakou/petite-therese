@@ -8,23 +8,39 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Circulaire extends Model
 {
     protected $fillable = [
-        'titre', 'contenu', 'destinataires',
-        'statut', 'publiee_le', 'creee_par',
+        'titre', 'type', 'destinataires', 'contenu',
+        'fichier_joint', 'statut', 'date_publication', 'cree_par',
     ];
 
     protected $casts = [
-        'publiee_le' => 'datetime',
+        'date_publication' => 'datetime',
+    ];
+
+    const TYPES = [
+        'information' => '📢 Information',
+        'convocation' => '📅 Convocation',
+        'evenement'   => '🎉 Événement',
+        'urgent'      => '🚨 Urgent',
+        'autre'       => 'Autre',
     ];
 
     const DESTINATAIRES = [
         'tous'        => 'Tous',
-        'parents'     => 'Parents',
         'enseignants' => 'Enseignants',
-        'eleves'      => 'Élèves',
+        'parents'     => 'Parents',
+        'personnel'   => 'Personnel',
+    ];
+
+    const STATUTS = [
+        'brouillon' => 'Brouillon',
+        'publiee'   => 'Publiée',
+        'archivee'  => 'Archivée',
     ];
 
     public function creePar(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'creee_par');
+        return $this->belongsTo(User::class, 'cree_par');
     }
+
+    
 }

@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\Archives;
 
+use App\Filament\Resources\Archives\Pages\ListArchives;
 use App\Filament\Resources\Archives\Pages\CreateArchive;
 use App\Filament\Resources\Archives\Pages\EditArchive;
-use App\Filament\Resources\Archives\Pages\ListArchives;
 use App\Filament\Resources\Archives\Schemas\ArchiveForm;
 use App\Filament\Resources\Archives\Tables\ArchivesTable;
 use App\Models\Archive;
@@ -29,10 +29,29 @@ class ArchiveResource extends Resource
         return 'Ressources';
     }
 
-    // Accès UNIQUEMENT au Super Admin
-    public static function canAccess(): bool
+    public static function canViewAny(): bool
     {
-        return auth()->user()?->hasRole('super_admin') ?? false;
+        return auth()->user()?->hasAnyRole(['super_admin']) ?? false;
+    }
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin']) ?? false;
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin']) ?? false;
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin']) ?? false;
+    }
+
+    public static function canDeleteAny(): bool
+    {
+        return auth()->user()?->hasAnyRole(['super_admin']) ?? false;
     }
 
     public static function form(Schema $schema): Schema
@@ -54,8 +73,8 @@ class ArchiveResource extends Resource
     {
         return [
             'index'  => ListArchives::route('/'),
-            'create' => CreateArchive::route('/create'),
-            'edit'   => EditArchive::route('/{record}/edit'),
+            'create'  => CreateArchive::route('/create'),
+            'edit'  => EditArchive::route('/edit'),
         ];
     }
 }

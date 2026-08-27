@@ -65,8 +65,10 @@ class ClassesTable
                     ->relationship('anneeScolaire', 'libelle'),
             ])
             ->recordActions([
-                EditAction::make()->label('Modifier'),
-            ])
+            EditAction::make()
+        ->label('Modifier')
+        ->visible(fn() => auth()->user()->hasAnyRole(['super_admin', 'directeur'])),
+])
             ->toolbarActions([
                 BulkActionGroup::make([DeleteBulkAction::make()]),
             ])
