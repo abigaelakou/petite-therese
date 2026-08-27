@@ -8,11 +8,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="@yield('meta_description', 'Groupe Scolaire Catholique La Petite Thérèse - Établissement d\'excellence à Port-Bouet / Gonzague, Abidjan')">
     <meta name="keywords" content="@yield('meta_keywords', 'école, Port-Bouet, Gonzague, Abidjan, La Petite Thérèse, maternelle, primaire')">
-    <meta name="csrf-token">
     <title>@yield('title', 'Groupe Scolaire Catholique La Petite Thérèse') | Port-Bouet, Abidjan</title>
 
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/logo/logoNew.png') }}">
-
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/all-fontawesome.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/brands.min.css">
@@ -20,6 +18,30 @@
     <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
+    <style>
+        /* ── BOUTON PORTAIL ── */
+        .btn-portail {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #1B2B6B, #12205A);
+            color: #C9A84C !important;
+            padding: 7px 16px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-decoration: none !important;
+            border: 1px solid rgba(201,168,76,0.3);
+            transition: all 0.25s ease;
+        }
+        .btn-portail:hover {
+            background: linear-gradient(135deg, #C9A84C, #A8893A);
+            color: #1B2B6B !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(201,168,76,0.3);
+        }
+    </style>
 
     @stack('styles')
 </head>
@@ -35,9 +57,6 @@
         </div>
     </div>
 
-    {{-- ==============================
-         HEADER
-    ============================== --}}
     <header class="header">
 
         {{-- Header Top --}}
@@ -57,22 +76,13 @@
                         <div class="header-top-contact">
                             <ul>
                                 <li>
-                                    <a href="#">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        Port-Bouet / Gonzague Ville, Abidjan
-                                    </a>
+                                    <a href="#"><i class="fas fa-map-marker-alt"></i> Port-Bouet / Gonzague Ville, Abidjan</a>
                                 </li>
                                 <li>
-                                    <a href="mailto:contact@lapetitetherese.ci">
-                                        <i class="fas fa-envelope"></i>
-                                        contact@lapetitetherese.ci
-                                    </a>
+                                    <a href="mailto:contact@lapetitetherese.ci"><i class="fas fa-envelope"></i> contact@lapetitetherese.ci</a>
                                 </li>
                                 <li>
-                                    <a href="tel:+2250700000000">
-                                        <i class="fas fa-phone-volume"></i>
-                                        +225 07 00 00 00 00
-                                    </a>
+                                    <a href="tel:+2250700000000"><i class="fas fa-phone-volume"></i> +225 07 00 00 00 00</a>
                                 </li>
                             </ul>
                         </div>
@@ -80,14 +90,12 @@
                 </div>
             </div>
         </div>
-        {{-- Header Top End --}}
 
         {{-- Navigation principale --}}
         <div class="main-navigation">
             <nav class="navbar navbar-expand-lg">
                 <div class="container position-relative">
 
-                    {{-- CORRECTION 1 : .jpg au lieu de .png + taille contrôlée --}}
                     <a class="navbar-brand" href="{{ route('home') }}">
                         <img src="{{ asset('assets/img/logo/logoNew.jpg') }}"
                              alt="GSC La Petite Thérèse"
@@ -95,11 +103,6 @@
                     </a>
 
                     <div class="mobile-menu-right">
-                        <div class="search-btn">
-                            <button type="button" class="nav-right-link search-box-outer">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
                         <button class="navbar-toggler" type="button"
                             data-bs-toggle="collapse" data-bs-target="#main_nav"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -112,107 +115,51 @@
 
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
-                                   href="{{ route('home') }}">
-                                    Accueil
-                                </a>
+                                   href="{{ route('home') }}">Accueil</a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}"
-                                   href="{{ route('about') }}">
-                                    À propos
-                                </a>
+                                   href="{{ route('about') }}">À propos</a>
                             </li>
 
-                            {{-- CORRECTION 2 : col-md-4 au lieu de col-md-3 (3 colonnes au lieu de 4) --}}
-                            <li class="nav-item mega-menu dropdown">
-                                <a class="nav-link dropdown-toggle {{ request()->routeIs('niveaux*') ? 'active' : '' }}"
-                                   href="#" data-bs-toggle="dropdown">
-                                    Niveaux scolaires
-                                </a>
-                                <div class="dropdown-menu fade-down">
-                                    <div class="mega-content">
-                                        <div class="container-fluid">
-                                            <div class="row">
-                                                <div class="col-12 col-sm-4 col-md-4">
-                                                    <h5>Notre école</h5>
-                                                    <div class="menu-about">
-                                                        <a href="{{ route('home') }}" class="menu-about-logo">
-                                                            <img src="{{ asset('assets/img/logo/logoNew.jpg') }}"
-                                                                 alt="GSC La Petite Thérèse"
-                                                                 style="max-height: 50px; width: auto;">
-                                                        </a>
-                                                        <p>Un cadre bienveillant et stimulant pour l'épanouissement de vos enfants, de la Maternelle au CM2.</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 col-sm-4 col-md-4">
-                                                    <h5>Préscolaire & Primaire</h5>
-                                                    <ul class="mega-menu-item">
-                                                        <li><a class="dropdown-item" href="{{ route('niveaux') }}#maternelle">Maternelle (PS – MS – GS)</a></li>
-                                                        <li><a class="dropdown-item" href="{{ route('niveaux') }}#primaire">CP & CE1</a></li>
-                                                        <li><a class="dropdown-item" href="{{ route('niveaux') }}#primaire">CE2 & CM1</a></li>
-                                                        <li><a class="dropdown-item" href="{{ route('niveaux') }}#primaire">CM2</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-12 col-sm-4 col-md-4">
-                                                    <h5>Ressources</h5>
-                                                    <ul class="mega-menu-item">
-                                                        <li><a class="dropdown-item" href="{{ route('enseignants') }}">Notre équipe pédagogique</a></li>
-                                                        <li><a class="dropdown-item" href="{{ route('admissions') }}">Admissions & Frais</a></li>
-                                                        <li><a class="dropdown-item" href="{{ route('galerie') }}">Galerie photos</a></li>
-                                                        <li><a class="dropdown-item" href="{{ route('contact') }}">Nous contacter</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->routeIs('niveaux*') ? 'active' : '' }}"
+                                   href="{{ route('niveaux') }}">Niveaux</a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->routeIs('enseignants*') ? 'active' : '' }}"
-                                   href="{{ route('enseignants') }}">
-                                    Enseignants
-                                </a>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle {{ request()->routeIs('admissions*') ? 'active' : '' }}"
-                                   href="#" data-bs-toggle="dropdown">
-                                    Admissions
-                                </a>
-                                <ul class="dropdown-menu fade-down">
-                                    <li><a class="dropdown-item" href="{{ route('admissions') }}">Comment s'inscrire</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('admissions') }}#frais">Frais de scolarité</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('admissions') }}#formulaire">Formulaire d'inscription</a></li>
-                                </ul>
+                                   href="{{ route('enseignants') }}">Enseignants</a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->routeIs('galerie') ? 'active' : '' }}"
-                                   href="{{ route('galerie') }}">
-                                    Galerie
-                                </a>
+                                   href="{{ route('galerie') }}">Galerie</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->routeIs('vie-scolaire*') ? 'active' : '' }}"
+                                   href="{{ route('vie-scolaire.index') }}">Vie Scolaire</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->routeIs('admissions*') ? 'active' : '' }}"
+                                   href="{{ route('admissions') }}">Admissions</a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}"
-                                   href="{{ route('contact') }}">
-                                    Contact
-                                </a>
+                                   href="{{ route('contact') }}">Contact</a>
                             </li>
 
                         </ul>
 
+                        {{-- Bouton Portail uniquement --}}
                         <div class="nav-right">
-                            <div class="search-btn">
-                                <button type="button" class="nav-right-link search-box-outer">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
                             <div class="nav-right-btn mt-2">
-                                <a href="{{ route('admissions') }}" class="theme-btn">
-                                    <span class="fas fa-pencil"></span> S'inscrire
+                                <a href="/admin" class="btn-portail">
+                                    <i class="fas fa-lock"></i> Portail
                                 </a>
                             </div>
                         </div>
@@ -221,35 +168,15 @@
                 </div>
             </nav>
         </div>
-        {{-- Navigation End --}}
 
     </header>
-    {{-- Header End --}}
 
-
-    {{-- Popup Search --}}
-    <div class="search-popup">
-        <button class="close-search"><span class="fas fa-times"></span></button>
-        <form action="#">
-            <div class="form-group">
-                <input type="search" name="search-field" placeholder="Rechercher..." required>
-                <button type="submit"><i class="fas fa-search"></i></button>
-            </div>
-        </form>
-    </div>
-
-
-    {{-- ==============================
-         CONTENU PRINCIPAL
-    ============================== --}}
+    {{-- CONTENU PRINCIPAL --}}
     <main class="main">
         @yield('content')
     </main>
 
-
-    {{-- ==============================
-         FOOTER
-    ============================== --}}
+    {{-- FOOTER --}}
     <footer class="footer-area">
         <div class="footer-shape">
             <img src="{{ asset('assets/img/shape/03.png') }}" alt="">
@@ -258,12 +185,9 @@
             <div class="container">
                 <div class="row footer-widget-wrapper pt-100 pb-70">
 
-                    {{-- Colonne 1 : À propos --}}
                     <div class="col-md-6 col-lg-4">
                         <div class="footer-widget-box about-us">
                             <a href="{{ route('home') }}" class="footer-logo">
-                                {{-- CORRECTION 1 : .jpg + fond blanc visible sur footer sombre
-                                     → idéalement remplacer par une version PNG fond transparent --}}
                                 <img src="{{ asset('assets/img/logo/logo-lightN.PNG') }}"
                                      alt="GSC La Petite Thérèse"
                                      style="max-height: 80px; width: auto;">
@@ -274,55 +198,43 @@
                                 à Port-Bouet / Gonzague Ville, Abidjan.
                             </p>
                             <ul class="footer-contact">
-                                <li>
-                                    <a href="tel:+2250700000000">
-                                        <i class="fas fa-phone"></i>+225 07 00 00 00 00
-                                    </a>
-                                </li>
-                                <li>
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    Port-Bouet / Gonzague Ville, Abidjan
-                                </li>
-                                <li>
-                                    <a href="mailto:contact@lapetitetherese.ci">
-                                        <i class="fas fa-envelope"></i>contact@lapetitetherese.ci
-                                    </a>
-                                </li>
+                                <li><a href="tel:+2250700000000"><i class="fas fa-phone"></i>+225 07 00 00 00 00</a></li>
+                                <li><i class="fas fa-map-marker-alt"></i> Port-Bouet / Gonzague Ville, Abidjan</li>
+                                <li><a href="mailto:contact@lapetitetherese.ci"><i class="fas fa-envelope"></i>contact@lapetitetherese.ci</a></li>
                             </ul>
                         </div>
                     </div>
 
-                    {{-- Colonne 2 : Liens rapides --}}
                     <div class="col-md-6 col-lg-2">
                         <div class="footer-widget-box list">
                             <h4 class="footer-widget-title">Liens rapides</h4>
                             <ul class="footer-list">
                                 <li><a href="{{ route('about') }}"><i class="fas fa-caret-right"></i> À propos</a></li>
-                                <li><a href="{{ route('niveaux') }}"><i class="fas fa-caret-right"></i> Niveaux scolaires</a></li>
+                                <li><a href="{{ route('niveaux') }}"><i class="fas fa-caret-right"></i> Niveaux</a></li>
                                 <li><a href="{{ route('enseignants') }}"><i class="fas fa-caret-right"></i> Enseignants</a></li>
                                 <li><a href="{{ route('galerie') }}"><i class="fas fa-caret-right"></i> Galerie</a></li>
+                                <li><a href="{{ route('vie-scolaire.index') }}"><i class="fas fa-caret-right"></i> Vie Scolaire</a></li>
                                 <li><a href="{{ route('admissions') }}"><i class="fas fa-caret-right"></i> Admissions</a></li>
                                 <li><a href="{{ route('contact') }}"><i class="fas fa-caret-right"></i> Contact</a></li>
                             </ul>
                         </div>
                     </div>
 
-                    {{-- Colonne 3 : Niveaux --}}
                     <div class="col-md-6 col-lg-3">
                         <div class="footer-widget-box list">
                             <h4 class="footer-widget-title">Niveaux scolaires</h4>
                             <ul class="footer-list">
-                                <li><a href="{{ route('niveaux') }}#maternelle"><i class="fas fa-caret-right"></i> Maternelle (PS – MS – GS)</a></li>
-                                <li><a href="{{ route('niveaux') }}#primaire"><i class="fas fa-caret-right"></i> CP – CE1 – CE2</a></li>
-                                <li><a href="{{ route('niveaux') }}#primaire"><i class="fas fa-caret-right"></i> CM1 – CM2</a></li>
+                                <li><a href="{{ route('niveaux') }}#maternelle"><i class="fas fa-caret-right"></i> Maternelle (MS – GS)</a></li>
+                                <li><a href="{{ route('niveaux') }}#primaire"><i class="fas fa-caret-right"></i> CP1 & CP2</a></li>
+                                <li><a href="{{ route('niveaux') }}#primaire"><i class="fas fa-caret-right"></i> CE1 & CE2</a></li>
+                                <li><a href="{{ route('niveaux') }}#primaire"><i class="fas fa-caret-right"></i> CM1 & CM2</a></li>
                             </ul>
                         </div>
                     </div>
 
-                    {{-- Colonne 4 : Newsletter --}}
                     <div class="col-md-6 col-lg-3">
                         <div class="footer-widget-box list">
-                            <h4 class="footer-widget-title">Actualités</h4>
+                            <h4 class="footer-widget-title">Restez informé</h4>
                             <div class="footer-newsletter">
                                 <p>Abonnez-vous pour recevoir les dernières nouvelles de l'école.</p>
                                 <div class="subscribe-form">
@@ -333,6 +245,11 @@
                                         </button>
                                     </form>
                                 </div>
+                                <div class="mt-3">
+                                    <a href="/admin" style="color:rgba(255,255,255,0.35);font-size:11px;text-decoration:none;">
+                                        <i class="fas fa-lock" style="font-size:10px;"></i> Portail Administration
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -341,7 +258,6 @@
             </div>
         </div>
 
-        {{-- Copyright --}}
         <div class="copyright">
             <div class="container">
                 <div class="copyright-wrapper">
@@ -367,16 +283,9 @@
         </div>
 
     </footer>
-    {{-- Footer End --}}
 
-
-    {{-- Scroll to top --}}
     <a href="#" id="scroll-top"><i class="fas fa-arrow-up-from-arc"></i></a>
 
-
-    {{-- ==============================
-         SCRIPTS
-    ============================== --}}
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/modernizr.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
