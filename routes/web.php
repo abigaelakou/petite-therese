@@ -12,6 +12,11 @@ Route::get('/admissions',  [PageController::class, 'admissions'])->name('admissi
 Route::get('/galerie',     [PageController::class, 'galerie'])->name('galerie');
 Route::get('/contact',     [PageController::class, 'contact'])->name('contact');
 Route::post('/contact',    [PageController::class, 'contactStore'])->name('contact.store');
+Route::get('/vie-scolaire', [App\Http\Controllers\PageController::class, 'vieScolaireIndex'])
+    ->name('vie-scolaire.index');
+
+Route::get('/vie-scolaire/{slug}', [App\Http\Controllers\PageController::class, 'vieScolaireShow'])
+    ->name('vie-scolaire.show');
 
 // ── ROUTES PROTÉGÉES ─────────────────────────────────────────
 Route::middleware('auth')->group(function () {

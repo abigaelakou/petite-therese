@@ -28,7 +28,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login() // ← AJOUTÉ — crée la route filament.admin.auth.login
             ->profile() 
-
+            
             // ============================================================
             // BRANDING — Logo + Nom école
             // ============================================================

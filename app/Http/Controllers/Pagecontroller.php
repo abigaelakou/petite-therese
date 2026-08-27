@@ -105,4 +105,36 @@ class PageController extends Controller
                 ->with('success', 'Votre message a bien été envoyé. Nous vous répondrons dans les plus brefs délais.');
         }
     }
+
+      public function vieScolaireIndex(Request $request)
+    {
+        $query = \App\Models\Article::publie();
+ 
+        if ($request->categorie) {
+            $query->where('categorie', $request->categorie);
+        }
+ 
+        $articles = $query->paginate(9);
+ 
+        return view('pages.vie-scolaire-index', compact('articles'));
+    }
+ 
+    public function vieScolaireShow(string $slug)
+    {
+        $article = \App\Models\Article::where('slug', $slug)
+            ->where('statut', 'publie')
+            ->firstOrFail();
+ 
+        // Incrémenter les vues
+        $article->increment('vues');
+ 
+        // Articles récents pour la sidebar
+        $articlesRecents = \App\Models\Article::publie()
+            ->where('id', '!=', $article->id)
+            ->limit(4)
+            ->get();
+ 
+        return view('pages.vie-scolaire-show', compact('article', 'articlesRecents'));
+    }
+ 
 }
