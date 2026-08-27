@@ -294,7 +294,7 @@
                             <img src="{{ asset('assets/img/icon/course.svg') }}" alt="">
                         </div>
                         <div>
-                            <span class="counter" data-count="+" data-to="6" data-speed="3000">6</span>
+                            <span class="counter" data-count="+" data-to="8" data-speed="3000">8</span>
                             <h6 class="title">Niveaux scolaires</h6>
                         </div>
                     </div>
@@ -352,12 +352,12 @@
                                 <a href="{{ route('niveaux') }}#maternelle">Maternelle</a>
                             </h4>
                             <p class="course-text">
-                                La Petite Section (PS), Moyenne Section (MS) et Grande Section (GS).
+                                La Moyenne Section (MS) et Grande Section (GS).
                                 Un environnement ludique et sécurisant pour les premiers apprentissages.
                             </p>
                             <div class="course-bottom">
                                 <div class="course-bottom-left">
-                                    <span><i class="fas fa-clock"></i> 3 niveaux</span>
+                                    <span><i class="fas fa-clock"></i> 2 niveaux</span>
                                 </div>
                                 <a href="{{ route('admissions') }}" class="course-price" style="font-size:13px">S'inscrire</a>
                             </div>
@@ -818,7 +818,7 @@
                                     <div class="form-group">
                                         <select class="form-select" name="niveau" required>
                                             <option value="">Choisir un niveau</option>
-                                            <option value="ps">Petite Section (PS)</option>
+                                            <!-- <option value="ps">Petite Section (PS)</option> -->
                                             <option value="ms">Moyenne Section (MS)</option>
                                             <option value="gs">Grande Section (GS)</option>
                                             <option value="cp">CP</option>
