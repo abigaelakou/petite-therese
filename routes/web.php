@@ -74,4 +74,9 @@ Route::middleware('auth')->group(function () {
         return redirect("https://wa.me/?text=" . urlencode($message));
     })->name('circulaires.whatsapp');
 
+    // Certificat de scolarité PDF
+    Route::get('/certificats/{certificat}/pdf',
+        [App\Http\Controllers\CertificatController::class, 'generer'])
+        ->name('certificats.pdf');
+
 });
